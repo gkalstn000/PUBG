@@ -48,11 +48,9 @@ Test Data : 1934174 x 28
 * **walkDistance** : 걸어간 거리(meter)
 * **weaponsAcquired** : 획득한 무기 종류 갯수
 * **winPoints** : 승리 전체 랭킹(승리를 고려한 랭킹)
-* **numGroups** : 게임 내 총 그룹 수
-* **maxPlace** : 게임내 최악의 등수
+* **numGroups** : 게임 내 총 그룹 수, 게임 참가 인원
+* **maxPlace** : 게임내 최악의 등수, 대기실 참가 인원
 * **winPlacePerc** :  Target. 예측 등수를 0.0~1.0사이의 값으로 변환한 값.
-
-Num Groups와 maxPlace의 속성이 조금 애매하다. 모든 데이터에서 maxPlace >= numGroups 인것으로 보아 게임 대기방에서 그룹수가 count된 후 나갔기 때문에 약간의 차이가 있는것으로 보인다.  
 
 </br>
 
@@ -115,11 +113,13 @@ sns.distplot(data['damageDealt'])
 plt.show()
 ```
 
-![결과](./img/displot.png)
+![결과](./img/DCL.png)
+
+이런식으로 sub data를 이용해 그래프를 그리거나, 조건에 맞는 data들의 집계를 구할 수 있다.
 
 ### 그래프
 
-> loc()
+> loc(), astype(), sort_values()
 >
 > countplot()
 >
@@ -131,10 +131,94 @@ plt.show()
 >
 > pointplot()
 >
-> subplot()
+> subplots()
 >
 > heatmap()
 >
 > pairplot()
 
+#### loc(), astype(), sort_values()
+
+loc() : Pandas Data Frame에서 조건에 맞는 Data Frame의 행 or 열을 **조회**하고 **수정**할 수 있는 메서드다.
+
+```data.loc[data['kills'] > data['kills'].quantile(0.99)] = '8+'``` 는 **"data"**라는 DataFrame의 **"kills"**속성에서 상위 99% 이상인 값들을 전부 **'8+'**로 바꿔주는 코드다.
+
+astype('타입') : 값들을 모두 지정한 타입값으로 바꿔준다.
+
+```data['kills'].astype('str')```는 **'kills'**의 값들을 모두 **'str'** 타입으로 바꿔준다.
+
+sort_values() : Data Frame의 속성을 정렬 시킨다.
+
+```python
+data = train.copy() # 깊은 복사
+data.loc[data['kills'] > data['kills'].quantile(0.99)] = '8+' # 상위 99%값들을 모두 8+ str타입으로 바꿈
+plt.figure(figsize=(15,10)) # figure size 설정
+sns.countplot(data['kills'].astype('str').sort_values()) # kills의 타입을 str로 바꾸고 정렬(0, 1, .. 8)
+plt.title("Kill Count",fontsize=15) # figure title 지정
+plt.show() # plt 출력
+```
+
+![결과](./img/graph.png)
+
+> Plot 그리는 방법들은 subplot을 제외하고 모두 비슷하기 때문에 각 plot별 특징만 알아보았다.
+
+#### countplot() 
+
+data를 이산적인 막대그래프 형태로 해당하는 값의 갯수를 파악할 수 있다.
+
+![countplot](./img/graph.png)
+
+#### displot()
+
+막대 그래프와 곡선 그래프가 동시에 나타나지만, 곡선 그래프가 더 중요하다.   
+
+변화의 추이를 분석하기위한 그래프.  
+
+옵션으로 막대그래프를 제거할 수 있다.
+
+![displot](./img/DCL.png)
+
+#### jointplot()
+
+각 속성의 막대 그래프와 속성 2개의 scatter plot(상관도)값을 보여준다.
+
+![jointplot](./img/jointplot.png)
+
+#### boxplot()
+
+값의 치우쳐짐을 한눈에 알 수있는 boxplot을 보여준다.
+
+![boxplot](./img/boxplot.png)
+
+#### pointplot()
+
+각 값의 평균값의 point를 이어서 그래프로 보여준다.
+
+![pointplot](./img/pointplot.png)
+
+#### subplots()
+
+여러개의 속성을 바둑판 형식으로 보여주는 subplot과 달리 subplots는 한 그래프안에 여러 속성을 표현할 수 있다.
+
+![subplots](./img/a.png)
+
+#### heatmap()
+
+전체 속성간의 상관관계를 알 수 있다.
+
+![heatmap](./img/heatmap.png)
+
+#### pairplot()
+
+jointplot의 subplot과 비슷한 역할을 한다.  
+
+heatmap과 다르게 상관관계들을 표현한다. 
+
+![pairplot](./img/pairplot.png)
+
 ## Feature Engineering
+
+### 가중 표준화
+
+### 연관된 속성끼리 비율 통합
+
