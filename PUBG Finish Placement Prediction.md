@@ -12,9 +12,9 @@
 
 ### 개요
 
-PUBG는 100이 계속해서 줄어드는 전투장 속에서 최후의 1인 혹은 1팀이 남을 때 까지 전투를 하는 배틀로얄 FPS 게임이다.  
+PUBG는 최대 player 100명이 계속해서 줄어드는 전투장 속에서 최후의 1인 혹은 1팀이 남을 때 까지 전투를 하는 배틀로얄 FPS 게임이다.  
 
-이 Competion은 Player의 경기 내용에관한 데이터(kills, revives, elo 등등)를 통해 해당 Player의 등수를 예측하고 실제 등수와의 MSE가 가장 작은 모델을 만드는 것이 목표다.
+이 Competion은 Player의 경기 내용에관한 데이터(kills, heals, assists 등등)를 통해 해당 Player의 등수를 예측하고 실제 등수와의 MSE가 가장 작은 모델을 만드는 것이 목표다.
 
 ### Data
 
@@ -244,6 +244,3 @@ ex) ```walkDistancePerHeals =100 * walkDistance / Heals```
 * RandomForest
 * LGBMRegressor
 * ensemble LightGBM
-
-
-
