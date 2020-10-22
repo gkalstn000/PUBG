@@ -86,13 +86,12 @@ print("The average person kills {:.4f} players, \
 while the most kills ever recorded is {}.".format(train['kills'].mean(),train['kills'].quantile(0.99), train['kills'].max()))
 ```
 
+```The average person kills 0.9345 players, 99% of people have 7.0 kills or less, while the most kills ever recorded is 60.```
 
+이 코드는 평균 킬 수, 상위 99% 사람의 킬 수, 그리고 킬 최대값을 구하는 코드이다.  
+
+연속형 데이터의 경우에 한하여 boxplot을 간단하게 글로 표현했다고 볼 수 있다.
 
 ### 그래프 - countplot(), distplot(), jointplot(), boxplot(), pointplot(), subplot(), heatmap(), pairplot()
 
 ## Feature Engineering
-
-
-
-# PUBG
-# PUBG
