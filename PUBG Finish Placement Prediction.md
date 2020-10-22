@@ -74,9 +74,13 @@ Num Groups와 maxPlace의 속성이 조금 애매하다. 모든 데이터에서 
 
 ## 시각화
 
-### numpy - quantile(), 인덱싱(필요 범위 뽑아내거나 설정)
+### numpy
 
-#### quantile() : 분위수
+> quantile()
+>
+> 데이터 조작(필요 범위 뽑아내거나 설정)
+
+#### np.quantile() : 분위수
 
 자료 크기 순위에 따른 위치값이다. 분위수를 통해 **"대다수"** 와 **"이상치"** 를 판별해 시각화, NA값 설정, feature engineering 등을 할 수 있다. 
 
@@ -96,6 +100,41 @@ while the most kills ever recorded is {}.".format(train['kills'].mean(),train['k
 
 연속형 데이터의 경우에 한하여 boxplot을 간단하게 글로 표현했다고 볼 수 있다.
 
-### 그래프 - countplot(), distplot(), jointplot(), boxplot(), pointplot(), subplot(), heatmap(), pairplot()
+#### 데이터 조작
+
+numpy 매트릭스의 데이터들을 마치 데이터 베이스 SQL처럼 조작을 할 수 있다.
+
+```data[-data의 조건-]``` 을 이용하면 전체 데이터에서 원하는 조건을 충족시키는 데이터만 뽑아서 새로운 sub dataset을 다룰 수 있게 된다.
+
+```python
+data = train.copy() #pandas.DataFrame.copy()는 default값으로 deep copy를 해준다.
+data = data[data['kills']==0] # data에서 kills가 0인 부분만 골라 새로운 sub dataset 정의
+plt.figure(figsize=(15,10))
+plt.title("Damage Dealt by 0 killers",fontsize=15)
+sns.distplot(data['damageDealt'])
+plt.show()
+```
+
+![결과](./img/displot.png)
+
+### 그래프
+
+> loc()
+>
+> countplot()
+>
+> distplot()
+>
+> jointplot()
+>
+> boxplot()
+>
+> pointplot()
+>
+> subplot()
+>
+> heatmap()
+>
+> pairplot()
 
 ## Feature Engineering
