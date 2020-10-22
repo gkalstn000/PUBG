@@ -80,11 +80,15 @@ Num Groups와 maxPlace의 속성이 조금 애매하다. 모든 데이터에서 
 
 자료 크기 순위에 따른 위치값이다. 분위수를 통해 **"대다수"** 와 **"이상치"** 를 판별해 시각화, NA값 설정, feature engineering 등을 할 수 있다. 
 
+**[in]**
+
 ```python
 print("The average person kills {:.4f} players, \
 99% of people have {} kills or less, \
 while the most kills ever recorded is {}.".format(train['kills'].mean(),train['kills'].quantile(0.99), train['kills'].max()))
 ```
+
+**[out]**
 
 ```The average person kills 0.9345 players, 99% of people have 7.0 kills or less, while the most kills ever recorded is 60.```
 
