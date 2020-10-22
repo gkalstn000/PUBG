@@ -220,5 +220,30 @@ heatmap과 다르게 상관관계들을 표현한다.
 
 ### 가중 표준화
 
+100명 게임에서 1킬과, 96명 게임에서 1킬은 비율상 다른것을 표준화 시킴
+
+ex) ```kill norm =  (100-players) / 100 + 1``` 
+
 ### 연관된 속성끼리 비율 통합
+
+ex) ```walkDistancePerHeals =100 * walkDistance / Heals```
+
+등등새로운 특성을 만듬.
+
+## 모델링 계획
+
+### Outlier Deal(Cheater)
+
+### Feature Engineering
+
+### Solo, Duo, Sqard 로 모델을 나누어 predict
+
+### 모델 후보
+
+* LinearRegression
+* RandomForest
+* LGBMRegressor
+* ensemble LightGBM
+
+
 
